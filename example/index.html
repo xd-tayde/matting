@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example</title>
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background-color: #e9e6e6;
+        }
+        .btn{
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: #0e6cc3;
+            border:2px solid #0e6cc3;
+            border-radius: 8px;
+            margin-left: -50px;
+        }
+        .origin, .result{
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            position: relative;
+        }
+        .title{
+            font-size: 20px;
+            color: #0e6cc3;
+            line-height: 30px;
+            text-align: center;
+            padding: 10px;
+        }
+        .image{
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="origin">
+        <h1 class="title">妆容结果图</h1>
+        <img class="image" src="./cartoon.jpg" alt="" id="origin">
+    </div>
+    <div class="result" id="result">
+        <h1 class="title">抠除后的图</h1>
+    </div>
+    <div class="btn" id="btn">抠除背景</div>
+    <script src="./dist/example.js"></script>
+</body>
+</html>
