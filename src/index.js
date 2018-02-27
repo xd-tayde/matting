@@ -10,12 +10,12 @@ export default function matting(options){
         export_type : 'base64',   // canvas dom or base64;
         mask_zoom : 0.5 ,   // 0 < mask_zoom <= 1
         success(){},
+        error(){},
     }, options);
 
     let origin, originCtx, mask, maskCtx, result, resultCtx;
 
     loadImage(image, imgEl => {
-        console.dir(image);
         // 绘制原图；
         origin = document.createElement('canvas');
         originCtx = origin.getContext('2d');
@@ -51,10 +51,12 @@ export default function matting(options){
         }else{
             ops.success(result.toDataURL(`image/png`, ops.quality));
         }
+    }, err => {
+        ops.error(err);
     });
 }
 
-function loadImage(image, cbk){
+function loadImage(image, cbk, error){
     if(typeof image == 'string'){
         let img = new Image();
         img.crossOrigin = '*';
@@ -63,6 +65,7 @@ function loadImage(image, cbk){
         };
         img.onerror = () => {
             console.error('load image error!');
+            error(image);
         };
         img.src = image + `?${new Date().getTime()}`;
     }else{

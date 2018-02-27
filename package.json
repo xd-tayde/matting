@@ -1,9 +1,9 @@
 {
   "name": "@meitu/matting",
-  "version": "1.0.0",
-  "description": "meitu library template.",
-  "main": "dist/@meitu/matting.js",
-  "module": "dist/@meitu/matting.es.js",
+  "version": "1.0.2",
+  "description": "the matting function",
+  "main": "dist/matting.js",
+  "module": "dist/matting.es.js",
   "moduleName": "Matting",
   "scripts": {
     "test": "mocha test/index.js",

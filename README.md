@@ -2,7 +2,7 @@
 
 ### [demo](http://f2er.meitu.com/gxd/matting/example/index.html)
 
-现在公司中的妆容处理可以输出对应的人像识别`mask`图层，通过`mask`，可以使用该简易插件进行人像的抠出，便于在业务中自由替换背景，完成特定的效果；
+基于人像识别`mask`图层技术，通过`mask`，可以使用该简易插件进行人像的抠出，便于在业务中自由替换背景，完成特定的需求
 
 使用方式：
 
@@ -14,6 +14,9 @@ matting({
     mask_zoom : 0.5 , // mask去除背景时的缩放比例，调节性能和质量的平衡
     success(result){
         // result 可能为 base64 或者 一个canvas节点；
+    },
+    error(src){
+
     },
 });
 ```

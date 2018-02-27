@@ -1,6 +1,6 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-	typeof define === 'function' && define.amd ? define('Matting', factory) :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(factory());
 }(this, (function () { 'use strict';
 
@@ -17,7 +17,8 @@ function matting(options) {
         export_quality: .9,
         export_type: 'base64', // canvas dom or base64;
         mask_zoom: 0.5, // 0 < mask_zoom <= 1
-        success: function success() {}
+        success: function success() {},
+        error: function error() {}
     }, options);
 
     var origin = void 0,
@@ -28,7 +29,6 @@ function matting(options) {
         resultCtx = void 0;
 
     loadImage(image, function (imgEl) {
-        console.dir(image);
         // 绘制原图；
         origin = document.createElement('canvas');
         originCtx = origin.getContext('2d');
@@ -64,10 +64,12 @@ function matting(options) {
         } else {
             ops.success(result.toDataURL('image/png', ops.quality));
         }
+    }, function (err) {
+        ops.error(err);
     });
 }
 
-function loadImage(image, cbk) {
+function loadImage(image, cbk, error) {
     if (typeof image == 'string') {
         var img = new Image();
         img.crossOrigin = '*';
@@ -76,6 +78,7 @@ function loadImage(image, cbk) {
         };
         img.onerror = function () {
             console.error('load image error!');
+            error(image);
         };
         img.src = image + ('?' + new Date().getTime());
     } else {
